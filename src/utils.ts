@@ -67,9 +67,9 @@ export function getType(node: any) {
   return node.typeAnnotation.typeAnnotation.typeName.name;
 }
 
-export const stencilDecorators = ['Component', 'Prop', 'State', 'Watch', 'Element', 'Method', 'Event', 'Listen'];
+export const DECORATORS = ['Component', 'Prop', 'State', 'Watch', 'Element', 'Method', 'Event', 'Listen'];
 
-export const stencilLifecycle = [
+export const LIFECYCLE_METHODS = [
   'connectedCallback',
   'disconnectedCallback',
   'componentWillLoad',
