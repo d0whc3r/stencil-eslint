@@ -7,6 +7,7 @@ export class SampleTag {
   @Prop({ mutable: true }) mutableInJsx?: boolean;
   @Prop({ mutable: true }) mutableInJsx2?: boolean;
   @Prop({ mutable: true }) testMutableReturn?: boolean;
+  @Prop({ mutable: true }) mutableInArrayFn?: boolean;
 
   private internalMethod() {
     const test = 'hi';
@@ -17,6 +18,9 @@ export class SampleTag {
   }
 
   private onClick(e: Event) {
+    this.eventHandler((variable) => {
+      this.mutableInArrayFn = variable;
+    });
     e.preventDefault();
     if (!this.testNotMutable) {
       this.testMutable = true;

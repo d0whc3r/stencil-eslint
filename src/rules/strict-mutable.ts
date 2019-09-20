@@ -75,13 +75,14 @@ const rule: Rule.RuleModule = {
         return;
       }
       const { expression, left, openingElement, body, nextContainer, statements, thenStatement } = expr;
+      const args = expr.arguments;
       if (left && left.name && expr.operatorToken && ASSIGN_TOKENS.includes(expr.operatorToken.kind)) {
         removeVar(left.name);
       }
       if (openingElement) {
         getArray(openingElement.attributes).forEach(checkExpression);
       }
-      [...getArray(thenStatement), expression, body, nextContainer].filter((ex) => !!ex).forEach(checkExpression);
+      [...getArray(thenStatement), expression, body, nextContainer, ...getArray(args)].filter((ex) => !!ex).forEach(checkExpression);
       if (statements) {
         statements.forEach(checkStatement);
       }
