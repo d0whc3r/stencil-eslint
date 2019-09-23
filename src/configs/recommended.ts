@@ -13,6 +13,25 @@ export default {
       rules: {
         '@d0whc3r/stencil/async-methods': 'error',
         '@d0whc3r/stencil/ban-prefix': ['error', ['stencil', 'stnl', 'st']],
+        '@d0whc3r/stencil/component-order': [
+          'error', {
+            order: [
+              'own-prop',
+              'element',
+              'state',
+              'watched-state',
+              'prop',
+              'watched-prop',
+              'event',
+              'lifecycle',
+              'listen',
+              'method',
+              'own-method',
+              'render'
+            ],
+            followingWatch: true,
+            alphabetical: true
+          }],
         '@d0whc3r/stencil/decorators-context': 'error',
         '@d0whc3r/stencil/decorators-style': [
           'error', {
@@ -26,6 +45,7 @@ export default {
           }],
         '@d0whc3r/stencil/element-type': 'error',
         '@d0whc3r/stencil/host-data-deprecated': 'error',
+        '@d0whc3r/stencil/lifecycle-order': ['error', 'call-order'],
         '@d0whc3r/stencil/methods-must-be-public': 'error',
         '@d0whc3r/stencil/no-unused-watch': 'error',
         '@d0whc3r/stencil/own-methods-must-be-private': 'error',

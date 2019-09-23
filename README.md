@@ -55,13 +55,17 @@ This rule catches Stencil Element decorator have the correct type.
 
 This rule catches Stencil method hostData.
 
+- [`@d0whc3r/stencil/lifecycle-order`](./docs/lifecycle-order.md)
+
+This rule catches Stencil lifecycle written order.
+
 - [`@d0whc3r/stencil/methods-must-be-public`](./docs/methods-must-be-public.md)
 
 This rule catches Stencil Methods marked as private or protected.
 
 - [`@d0whc3r/stencil/no-unused-watch`](./docs/no-unused-watch.md)
 
-This rule catches Stencil Watchs with non existing Props or States.
+This rule catches Stencil Watchthys with non existing Props or States.
 
 - [`@d0whc3r/stencil/own-methods-must-be-private`](./docs/own-methods-must-be-private.md)
 
@@ -126,6 +130,7 @@ This rule catches Stencil Prop marked as mutable but not changing value in code.
     }],
   "@d0whc3r/stencil/element-type": "error",
   "@d0whc3r/stencil/host-data-deprecated": "error",
+  "@d0whc3r/stencil/lifecycle-order": ["error", "call-order"],
   "@d0whc3r/stencil/methods-must-be-public": "error",
   "@d0whc3r/stencil/no-unused-watch": "error",
   "@d0whc3r/stencil/own-methods-must-be-private": "error",

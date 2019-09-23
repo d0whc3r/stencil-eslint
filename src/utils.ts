@@ -32,7 +32,7 @@ export function parseDecorator(decorator: any) {
 }
 
 export function decoratorName(dec: any): string {
-  return dec.expression && dec.expression.callee.name;
+  return dec && dec.expression && dec.expression.callee.name;
 }
 
 export function isDecoratorNamed(propName: string) {
@@ -71,13 +71,15 @@ export const DECORATORS = ['Component', 'Prop', 'State', 'Watch', 'Element', 'Me
 
 export const LIFECYCLE_METHODS = [
   'connectedCallback',
-  'disconnectedCallback',
   'componentWillLoad',
   'componentDidLoad',
   'componentWillRender',
   'componentDidRender',
+  'componentShouldUpdate',
   'componentWillUpdate',
   'componentDidUpdate',
+  'componentDidUnload',
+  'disconnectedCallback',
   'render'
 ];
 
