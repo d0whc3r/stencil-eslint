@@ -13,25 +13,25 @@ export default {
       rules: {
         '@d0whc3r/stencil/async-methods': 'error',
         '@d0whc3r/stencil/ban-prefix': ['error', ['stencil', 'stnl', 'st']],
-        '@d0whc3r/stencil/component-order': [
-          'error', {
-            order: [
-              'own-prop',
-              'element',
-              'state',
-              'watched-state',
-              'prop',
-              'watched-prop',
-              'event',
-              'lifecycle',
-              'listen',
-              'method',
-              'own-method',
-              'render'
-            ],
-            followingWatch: true,
-            alphabetical: true
-          }],
+        // '@d0whc3r/stencil/component-order': [
+        //   'error', {
+        //     order: [
+        //       'own-prop',
+        //       'element',
+        //       'state',
+        //       'watched-state',
+        //       'prop',
+        //       'watched-prop',
+        //       'event',
+        //       'lifecycle',
+        //       'listen',
+        //       'method',
+        //       'own-method',
+        //       'render'
+        //     ],
+        //     followingWatch: true,
+        //     alphabetical: true
+        //   }],
         '@d0whc3r/stencil/decorators-context': 'error',
         '@d0whc3r/stencil/decorators-style': [
           'error', {

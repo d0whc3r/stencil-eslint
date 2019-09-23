@@ -5,6 +5,7 @@ import decoratorsContext from './decorators-context';
 import decoratorsStyle from './decorators-style';
 import elementType from './element-type';
 import hostDataDeprecated from './host-data-deprecated';
+import lifecycleOrder from './lifecycle-order';
 import methodsMustBePublic from './methods-must-be-public';
 import noUnusedWatch from './no-unused-watch';
 import ownMethodsMustBePrivate from './own-methods-must-be-private';
@@ -27,6 +28,7 @@ export default {
   'decorators-style': decoratorsStyle,
   'element-type': elementType,
   'host-data-deprecated': hostDataDeprecated,
+  'lifecycle-order': lifecycleOrder,
   'methods-must-be-public': methodsMustBePublic,
   'no-unused-watch': noUnusedWatch,
   'own-methods-must-be-private': ownMethodsMustBePrivate,
