@@ -52,7 +52,7 @@ export default {
         '@d0whc3r/stencil/own-props-must-be-private': 'error',
         '@d0whc3r/stencil/prefer-vdom-listener': 'error',
         '@d0whc3r/stencil/props-must-be-public': 'error',
-        '@d0whc3r/stencil/props-must-be-readonly': 'error',
+        '@d0whc3r/stencil/props-must-be-readonly': 'off',
         '@d0whc3r/stencil/render-returns-host': 'error',
         '@d0whc3r/stencil/required-jsdoc': 'error',
         '@d0whc3r/stencil/reserved-member-names': 'error',
