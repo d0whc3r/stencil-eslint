@@ -1,8 +1,9 @@
 @Component({ tag: 'sample-tag' })
 export class TheSampleTag {
-  /**
-   * Element: is the element
-   */
+  @Element() private theElement!: HTMLElement;
+
+  @Element() private readonly theElement!: HTMLElement;
+
   @Element() theElement!: HTMLElement;
 
   render() {

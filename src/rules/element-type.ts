@@ -43,7 +43,7 @@ const rule: Rule.RuleModule = {
               message: `@Element type is not matching tag for component (${parsedTag})`,
               fix(fixer) {
                 const result = text.replace(`: ${type}`, `: ${parsedTag}`);
-                return fixer.replaceText(node, result);
+                return fixer.replaceText(node.parent, result);
               }
             });
           }
