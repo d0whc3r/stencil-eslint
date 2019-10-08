@@ -27,7 +27,7 @@ const rule: Rule.RuleModule = {
         const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node);
         const stencilDecorator = originalNode.decorators && originalNode.decorators.some(
             (dec: any) => DECORATORS.includes(dec.expression.expression.escapedText));
-        const stencilCycle = LIFECYCLE_METHODS.includes(originalNode.name.escapedText);
+        const stencilCycle = LIFECYCLE_METHODS.includes(originalNode.name && originalNode.name.escapedText);
         if (!stencilDecorator && !stencilCycle && !isPrivate(originalNode)) {
           const text = String(originalNode.getFullText());
           context.report({
