@@ -47,8 +47,11 @@ export function stencilComponentContext() {
     rules: {
       'ClassDeclaration': (node: any) => {
         const component = getDecorator(node, 'Component');
-        if (component) {
-          componentNode = component;
+        if (component ) {
+          const [{ tag }] = parseDecorator(component);
+          if (tag) {
+            componentNode = component;
+          }
         }
       },
       'ClassDeclaration:exit': (node: any) => {
