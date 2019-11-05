@@ -1,37 +1,13 @@
 export default {
-  overrides: [
-    {
-      parser: '@typescript-eslint/parser',
-      files: ['*.ts', '*.tsx'],
-      parserOptions: {
-        ecmaVersion: 2018,
-        sourceType: 'module',
-        ecmaFeatures: {
-          'jsx': true
-        }
-      },
+plugins: [
+    "react"
+  ],
+  extends: [
+    "plugin:@stencil/base",
+  ],
       rules: {
         '@d0whc3r/stencil/async-methods': 'error',
         '@d0whc3r/stencil/ban-prefix': ['error', ['stencil', 'stnl', 'st']],
-        // '@d0whc3r/stencil/component-order': [
-        //   'error', {
-        //     order: [
-        //       'own-prop',
-        //       'element',
-        //       'state',
-        //       'watched-state',
-        //       'prop',
-        //       'watched-prop',
-        //       'event',
-        //       'lifecycle',
-        //       'listen',
-        //       'method',
-        //       'own-method',
-        //       'render'
-        //     ],
-        //     followingWatch: true,
-        //     alphabetical: true
-        //   }],
         '@d0whc3r/stencil/decorators-context': 'error',
         '@d0whc3r/stencil/decorators-style': [
           'error', {
@@ -57,10 +33,36 @@ export default {
         '@d0whc3r/stencil/required-jsdoc': 'error',
         '@d0whc3r/stencil/reserved-member-names': 'error',
         '@d0whc3r/stencil/single-export': 'error',
-        '@d0whc3r/stencil/strict-mutable': 'error'
-      },
-      plugins: [
-        '@d0whc3r/stencil'
-      ]
+        '@d0whc3r/stencil/strict-mutable': 'error,
+    "react/jsx-no-bind": [1, {
+      "ignoreRefs": true
     }]
+      }
 };
+
+/*
+  rules: {
+    '@stencil/strict-boolean-conditions': 2,
+    '@stencil/ban-exported-const-enums': 2,
+    '@stencil/ban-side-effects': 2,
+    '@stencil/strict-mutable': 2,
+    '@stencil/decorators-style': [
+      'error', {
+        prop: 'inline',
+        state: 'inline',
+        element: 'inline',
+        event: 'inline',
+        method: 'multiline',
+        watch: 'multiline',
+        listen: 'multiline'
+      }
+    ],
+    '@stencil/own-methods-must-be-private': 1,
+    '@stencil/own-props-must-be-private': 1,
+    '@stencil/dependency-suggestions': 1,
+    '@stencil/required-jsdoc': 1,
+    "react/jsx-no-bind": [1, {
+      "ignoreRefs": true
+    }]
+  }
+*/

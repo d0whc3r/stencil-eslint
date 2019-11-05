@@ -29,10 +29,6 @@ const rule: Rule.RuleModule = {
           return;
         }
         const [{ tag }] = parseDecorator(component);
-        if (!tag) {
-          console.warn('[required-prefix] No tag detected for component');
-          return;
-        }
         const options = context.options[0];
         const match = options.some((t: string) => tag.startsWith(t));
 
