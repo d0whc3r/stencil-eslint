@@ -57,7 +57,7 @@ const isInScope = (n: any): boolean => {
     return isInScope(n);
   }
   return false;
-}
+};
 
 const DEFAULTS = ['describe', 'test', 'bind'];
 

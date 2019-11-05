@@ -8,15 +8,16 @@ describe('stencil rules', () => {
     good: path.resolve(__dirname, 'decorators-style.good.tsx'),
     wrong: path.resolve(__dirname, 'decorators-style.wrong.tsx')
   };
-  const options = [{
-    prop: 'inline',
-    state: 'inline',
-    element: 'inline',
-    event: 'inline',
-    method: 'multiline',
-    watch: 'multiline',
-    listen: 'multiline'
-  }];
+  const options = [
+    {
+      prop: 'inline',
+      state: 'inline',
+      element: 'inline',
+      event: 'inline',
+      method: 'multiline',
+      watch: 'multiline',
+      listen: 'multiline'
+    }];
   ruleTester.run('decorators-style', rule, {
     valid: [
       {

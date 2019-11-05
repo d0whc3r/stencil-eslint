@@ -11,21 +11,21 @@ export default {
         }
       },
       plugins: [
-        '@stencil'
+        '@d0whc3r/stencil'
       ],
       rules: {
-        '@stencil/async-methods': 2,
-        '@stencil/ban-prefix': [2, ['stencil', 'stnl', 'st']],
-        '@stencil/decorators-context': 2,
-        '@stencil/element-type': 2,
-        '@stencil/host-data-deprecated': 2,
-        '@stencil/methods-must-be-public': 2,
-        '@stencil/no-unused-watch': 2,
-        '@stencil/prefer-vdom-listener': 2,
-        '@stencil/props-must-be-public': 2,
-        '@stencil/render-returns-host': 2,
-        '@stencil/reserved-member-names': 2,
-        '@stencil/single-export': 2,
+        '@d0whc3r/stencil/async-methods': 2,
+        '@d0whc3r/stencil/ban-prefix': [2, ['stencil', 'stnl', 'st']],
+        '@d0whc3r/stencil/decorators-context': 2,
+        '@d0whc3r/stencil/element-type': 2,
+        '@d0whc3r/stencil/host-data-deprecated': 2,
+        '@d0whc3r/stencil/methods-must-be-public': 2,
+        '@d0whc3r/stencil/no-unused-watch': 2,
+        '@d0whc3r/stencil/prefer-vdom-listener': 2,
+        '@d0whc3r/stencil/props-must-be-public': 2,
+        '@d0whc3r/stencil/render-returns-host': 2,
+        '@d0whc3r/stencil/reserved-member-names': 2,
+        '@d0whc3r/stencil/single-export': 2
       }
     }
   ]

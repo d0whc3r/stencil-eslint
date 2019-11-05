@@ -31,8 +31,8 @@ const rule: Rule.RuleModule = {
           const jsDoc = originalNode.jsDoc;
           const isValid = jsDoc && jsDoc.length;
           const haveTags = isValid &&
-              jsDoc.some((jsdoc: any) => jsdoc.tags && jsdoc.tags.length && jsdoc.tags.some(
-                  (tag: any) => INVALID_TAGS.includes(tag.tagName.escapedText.toLowerCase())));
+            jsDoc.some((jsdoc: any) => jsdoc.tags && jsdoc.tags.length && jsdoc.tags.some(
+              (tag: any) => INVALID_TAGS.includes(tag.tagName.escapedText.toLowerCase())));
           if (!isValid) {
             context.report({
               node: node,

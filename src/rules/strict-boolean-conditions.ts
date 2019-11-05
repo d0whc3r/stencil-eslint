@@ -14,18 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import * as ts from "typescript";
+import * as ts from 'typescript';
 
 import { Rule } from 'eslint';
 
-const OPTION_ALLOW_NULL_UNION = "allow-null-union";
-const OPTION_ALLOW_UNDEFINED_UNION = "allow-undefined-union";
-const OPTION_ALLOW_STRING = "allow-string";
-const OPTION_ALLOW_ENUM = "allow-enum";
-const OPTION_ALLOW_NUMBER = "allow-number";
-const OPTION_ALLOW_MIX = "allow-mix";
-const OPTION_ALLOW_BOOLEAN_OR_UNDEFINED = "allow-boolean-or-undefined";
-const OPTION_ALLOW_ANY_RHS = "allow-any-rhs";
+const OPTION_ALLOW_NULL_UNION = 'allow-null-union';
+const OPTION_ALLOW_UNDEFINED_UNION = 'allow-undefined-union';
+const OPTION_ALLOW_STRING = 'allow-string';
+const OPTION_ALLOW_ENUM = 'allow-enum';
+const OPTION_ALLOW_NUMBER = 'allow-number';
+const OPTION_ALLOW_MIX = 'allow-mix';
+const OPTION_ALLOW_BOOLEAN_OR_UNDEFINED = 'allow-boolean-or-undefined';
+const OPTION_ALLOW_ANY_RHS = 'allow-any-rhs';
 
 const rule: Rule.RuleModule = {
   meta: {
@@ -38,30 +38,31 @@ const rule: Rule.RuleModule = {
       category: 'Possible Errors',
       recommended: true
     },
-    schema: [{
-      type: "array",
-      items: {
-        type: "string",
-        enum: [
-          OPTION_ALLOW_NULL_UNION,
-          OPTION_ALLOW_UNDEFINED_UNION,
-          OPTION_ALLOW_STRING,
-          OPTION_ALLOW_ENUM,
-          OPTION_ALLOW_NUMBER,
-          OPTION_ALLOW_BOOLEAN_OR_UNDEFINED,
-          OPTION_ALLOW_ANY_RHS
-        ],
-      },
-      minLength: 0,
-      maxLength: 5,
-    }],
+    schema: [
+      {
+        type: 'array',
+        items: {
+          type: 'string',
+          enum: [
+            OPTION_ALLOW_NULL_UNION,
+            OPTION_ALLOW_UNDEFINED_UNION,
+            OPTION_ALLOW_STRING,
+            OPTION_ALLOW_ENUM,
+            OPTION_ALLOW_NUMBER,
+            OPTION_ALLOW_BOOLEAN_OR_UNDEFINED,
+            OPTION_ALLOW_ANY_RHS
+          ]
+        },
+        minLength: 0,
+        maxLength: 5
+      }],
     type: 'problem'
   },
 
   create(context): Rule.RuleListener {
     const parserServices = context.parserServices;
     const program = parserServices.program;
-    const rawOptions = context.options[0] || ['allow-null-union', 'allow-undefined-union', 'allow-boolean-or-undefined']
+    const rawOptions = context.options[0] || ['allow-null-union', 'allow-undefined-union', 'allow-boolean-or-undefined'];
     const options = parseOptions(rawOptions, true);
     const checker = program.getTypeChecker() as ts.TypeChecker;
 
@@ -118,8 +119,8 @@ const rule: Rule.RuleModule = {
           const originalNode = parserServices.tsNodeToESTreeNodeMap.get(node);
           context.report({
             node: originalNode,
-            message: showFailure(location, failure, isUnionType(type), options),
-          })
+            message: showFailure(location, failure, isUnionType(type), options)
+          });
         }
       }
     }
@@ -132,8 +133,6 @@ const rule: Rule.RuleModule = {
     };
   }
 };
-
-
 
 interface Options {
   strictNullChecks: boolean;
@@ -157,7 +156,7 @@ function parseOptions(ruleArguments: string[], strictNullChecks: boolean): Optio
     allowNumber: has(OPTION_ALLOW_NUMBER),
     allowMix: has(OPTION_ALLOW_MIX),
     allowBooleanOrUndefined: has(OPTION_ALLOW_BOOLEAN_OR_UNDEFINED),
-    allowAnyRhs: has(OPTION_ALLOW_ANY_RHS),
+    allowAnyRhs: has(OPTION_ALLOW_ANY_RHS)
   };
 
   function has(name: string): boolean {
@@ -195,7 +194,7 @@ function isBooleanUndefined(type: ts.UnionType): boolean | undefined {
     if (isTypeFlagSet(ty, ts.TypeFlags.Boolean)) {
       isTruthy = true;
     } else if (isTypeFlagSet(ty, ts.TypeFlags.BooleanLiteral)) {
-      isTruthy = isTruthy || (ty as ts.IntrinsicType).intrinsicName === "true";
+      isTruthy = isTruthy || (ty as ts.IntrinsicType).intrinsicName === 'true';
     } else if (!isTypeFlagSet(ty, ts.TypeFlags.Void | ts.TypeFlags.Undefined)) { // tslint:disable-line:no-bitwise
       return undefined;
     }
@@ -305,15 +304,15 @@ function triState(kind: TypeKind): boolean | undefined {
 function getKind(type: ts.Type): TypeKind {
   return is(ts.TypeFlags.StringLike) ? TypeKind.String :
     is(ts.TypeFlags.NumberLike) ? TypeKind.Number :
-    is(ts.TypeFlags.Boolean) ? TypeKind.Boolean :
-    isObject('Promise') ? TypeKind.Promise :
-    is(ts.TypeFlags.Null) ? TypeKind.Null :
-    is(ts.TypeFlags.Undefined | ts.TypeFlags.Void) ? TypeKind.Undefined // tslint:disable-line:no-bitwise
-    :
-    is(ts.TypeFlags.EnumLike) ? TypeKind.Enum :
-    is(ts.TypeFlags.BooleanLiteral) ?
-    ((type as ts.IntrinsicType).intrinsicName === "true" ? TypeKind.AlwaysTruthy : TypeKind.FalseBooleanLiteral) :
-    TypeKind.AlwaysTruthy;
+      is(ts.TypeFlags.Boolean) ? TypeKind.Boolean :
+        isObject('Promise') ? TypeKind.Promise :
+          is(ts.TypeFlags.Null) ? TypeKind.Null :
+            is(ts.TypeFlags.Undefined | ts.TypeFlags.Void) ? TypeKind.Undefined // tslint:disable-line:no-bitwise
+              :
+              is(ts.TypeFlags.EnumLike) ? TypeKind.Enum :
+                is(ts.TypeFlags.BooleanLiteral) ?
+                  ((type as ts.IntrinsicType).intrinsicName === 'true' ? TypeKind.AlwaysTruthy : TypeKind.FalseBooleanLiteral) :
+                  TypeKind.AlwaysTruthy;
 
   function is(flags: ts.TypeFlags) {
     return isTypeFlagSet(type, flags);
@@ -321,17 +320,16 @@ function getKind(type: ts.Type): TypeKind {
 
   function isObject(name: string) {
     const symbol = type.getSymbol();
-    return (symbol && symbol.getName() === name)
+    return (symbol && symbol.getName() === name);
   }
 }
 
-
-function binaryBooleanExpressionKind(node: ts.BinaryExpression): "&&" | "||" | undefined {
+function binaryBooleanExpressionKind(node: ts.BinaryExpression): '&&' | '||' | undefined {
   switch (node.operatorToken.kind) {
     case ts.SyntaxKind.AmpersandAmpersandToken:
-      return "&&";
+      return '&&';
     case ts.SyntaxKind.BarBarToken:
-      return "||";
+      return '||';
     default:
       return undefined;
   }
@@ -344,7 +342,7 @@ function stringOr(parts: string[]): string {
     case 2:
       return `${parts[0]} or ${parts[1]}`;
     default:
-      let res = "";
+      let res = '';
       for (let i = 0; i < parts.length - 1; i++) {
         res += `${parts[i]}, `;
       }
@@ -359,17 +357,17 @@ function isUnionType(type: ts.Type): type is ts.UnionType {
 function showLocation(n: Location): string {
   switch (n.kind) {
     case ts.SyntaxKind.PrefixUnaryExpression:
-      return "operand for the '!' operator";
+      return 'operand for the \'!\' operator';
     case ts.SyntaxKind.ConditionalExpression:
-      return "condition";
+      return 'condition';
     case ts.SyntaxKind.ForStatement:
-      return "'for' condition";
+      return '\'for\' condition';
     case ts.SyntaxKind.IfStatement:
-      return "'if' condition";
+      return '\'if\' condition';
     case ts.SyntaxKind.WhileStatement:
-      return "'while' condition";
+      return '\'while\' condition';
     case ts.SyntaxKind.DoStatement:
-      return "'do-while' condition";
+      return '\'do-while\' condition';
     case ts.SyntaxKind.BinaryExpression:
       return `operand for the '${binaryBooleanExpressionKind(n)}' operator`;
   }
@@ -385,38 +383,38 @@ function showFailure(location: Location, ty: TypeFailure, unionType: boolean, op
 }
 
 function showExpectedTypes(options: Options): string[] {
-  const parts = ["boolean"];
+  const parts = ['boolean'];
   if (options.allowNullUnion) {
-    parts.push("null-union");
+    parts.push('null-union');
   }
   if (options.allowUndefinedUnion) {
-    parts.push("undefined-union");
+    parts.push('undefined-union');
   }
   if (options.allowString) {
-    parts.push("string");
+    parts.push('string');
   }
   if (options.allowEnum) {
-    parts.push("enum");
+    parts.push('enum');
   }
   if (options.allowNumber) {
-    parts.push("number");
+    parts.push('number');
   }
   if (options.allowBooleanOrUndefined) {
-    parts.push("boolean-or-undefined");
+    parts.push('boolean-or-undefined');
   }
   return parts;
 }
 
 function showTypeFailure(ty: TypeFailure, unionType: boolean, strictNullChecks: boolean) {
-  const is = unionType ? "could be" : "is";
+  const is = unionType ? 'could be' : 'is';
   switch (ty) {
     case TypeFailure.AlwaysTruthy:
       return strictNullChecks ?
-        "is always truthy" :
-        "is always truthy. It may be null/undefined, but neither " +
+        'is always truthy' :
+        'is always truthy. It may be null/undefined, but neither ' +
         `'${OPTION_ALLOW_NULL_UNION}' nor '${OPTION_ALLOW_UNDEFINED_UNION}' is set`;
     case TypeFailure.AlwaysFalsy:
-      return "is always falsy";
+      return 'is always falsy';
     case TypeFailure.String:
       return `${is} a string`;
     case TypeFailure.Number:
@@ -428,9 +426,9 @@ function showTypeFailure(ty: TypeFailure, unionType: boolean, strictNullChecks: 
     case TypeFailure.Enum:
       return `${is} an enum`;
     case TypeFailure.Promise:
-      return "promise handled as boolean expression";
+      return 'promise handled as boolean expression';
     case TypeFailure.Mixes:
-      return "unions more than one truthy/falsy type";
+      return 'unions more than one truthy/falsy type';
   }
 }
 
@@ -438,7 +436,7 @@ function isTypeFlagSet(obj: any, flag: any) {
   return (obj.flags & flag) !== 0;
 }
 
-declare module "typescript" {
+declare module 'typescript' {
   // No other way to distinguish boolean literal true from boolean literal false
   export interface IntrinsicType extends ts.Type {
     intrinsicName: string;

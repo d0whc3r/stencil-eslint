@@ -1,8 +1,7 @@
 @Component({ tag: 'sample-tag' })
 export class SampleTag {
-  @Method()
-  private async someMethod() {
-    return 'method';
+  render() {
+    return (<div>test</div>);
   }
 
   @Method()
@@ -10,7 +9,8 @@ export class SampleTag {
     return 'method2';
   }
 
-  render() {
-    return (<div>test</div>);
+  @Method()
+  private async someMethod() {
+    return 'method';
   }
 }

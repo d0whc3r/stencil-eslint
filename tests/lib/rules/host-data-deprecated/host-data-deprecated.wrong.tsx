@@ -4,8 +4,8 @@ export class SampleTag {
     return {
       attribute: 'navigation',
       class: {
-        'the-css-class': true,
-      },
+        'the-css-class': true
+      }
     };
   }
 

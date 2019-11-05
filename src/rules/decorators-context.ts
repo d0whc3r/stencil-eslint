@@ -24,10 +24,10 @@ const rule: Rule.RuleModule = {
         if (node.expression && node.expression.callee) {
           const decName = node.expression.callee.name;
           if (
-              decName === 'Prop' ||
-              decName === 'State' ||
-              decName === 'Element' ||
-              decName === 'Event'
+            decName === 'Prop' ||
+            decName === 'State' ||
+            decName === 'Element' ||
+            decName === 'Event'
           ) {
             if (node.parent.type !== 'ClassProperty') {
               context.report({
@@ -36,9 +36,9 @@ const rule: Rule.RuleModule = {
               });
             }
           } else if (
-              decName === 'Method' ||
-              decName === 'Watch' ||
-              decName === 'Listen'
+            decName === 'Method' ||
+            decName === 'Watch' ||
+            decName === 'Listen'
           ) {
             if (node.parent.type !== 'MethodDefinition') {
               context.report({

@@ -1,7 +1,4 @@
 import { Rule } from 'eslint';
-import ts from 'typescript';
-import { stencilComponentContext } from '../utils';
-import * as tsutils from 'tsutils';
 
 const rule: Rule.RuleModule = {
   meta: {
@@ -10,7 +7,7 @@ const rule: Rule.RuleModule = {
       recommended: true
     },
     schema: [],
-    type: 'suggestion',
+    type: 'suggestion'
   },
 
   create(context): Rule.RuleListener {
@@ -29,10 +26,10 @@ const rule: Rule.RuleModule = {
   }
 };
 
-const SUGGESTIONS: {[importName: string]: string} = {
+const SUGGESTIONS: { [importName: string]: string } = {
   'classnames': `Stencil can already render conditional classes:
   <div class={{disabled: condition}}>`,
   'lodash': `"lodash" will bloat your build, use "lodash-es" instead: https://www.npmjs.com/package/lodash-es`
-}
+};
 
 export default rule;

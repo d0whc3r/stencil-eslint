@@ -111,7 +111,7 @@ const rule: Rule.RuleModule = {
         mutableProps.forEach((varNode, varName) => {
           context.report({
             node: varNode.parent,
-            message: `@Prop() "${varName}" should not be mutable`,
+            message: `@Prop() "${varName}" should not be mutable`
           });
         });
         mutableProps.clear();

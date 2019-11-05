@@ -7,13 +7,13 @@ export class SampleTag {
    */
   @Prop({ mutable: true, attribute: 'some-attr', reflect: true }) testMutable2?: string;
 
+  render() {
+    return (<div>test</div>);
+  }
+
   private internalMethod() {
     const test = 'hi';
     this.testMutable = 'other value';
     return 'ok';
-  }
-
-  render() {
-    return (<div>test</div>);
   }
 }

@@ -7,7 +7,8 @@ export class SampleTag {
   @Element()
   element!: HTMLElement;
 
-  @Method() async someMethod() {
+  @Method()
+  async someMethod() {
     return 'method';
   }
 

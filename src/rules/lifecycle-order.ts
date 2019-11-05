@@ -1,5 +1,5 @@
 import { Rule } from 'eslint';
-import { stencilLifecycle, stencilComponentContext } from '../utils';
+import { stencilComponentContext, stencilLifecycle } from '../utils';
 
 type SortTypeEnum = 'alphabetical' | 'call-order';
 const DEFAULTS = 'call-order';
@@ -56,7 +56,7 @@ const rule: Rule.RuleModule = {
           });
         }
         positionIndex++;
-      })
+      });
     }
 
     return {

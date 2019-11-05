@@ -1,6 +1,5 @@
 import { Rule } from 'eslint';
-import ts from 'typescript';
-import { getDecorator, isPrivate, stencilComponentContext } from '../utils';
+import { stencilComponentContext } from '../utils';
 
 const varsList = new Set<string>();
 
@@ -38,7 +37,7 @@ const rule: Rule.RuleModule = {
       if (!varsList.has(varName)) {
         context.report({
           node: node,
-          message: `Watch decorator @Watch("${varName}") is not matching with any @Prop() or @State()`,
+          message: `Watch decorator @Watch("${varName}") is not matching with any @Prop() or @State()`
         });
       }
     }
