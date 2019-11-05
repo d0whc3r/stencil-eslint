@@ -1,13 +1,13 @@
 @Component({ tag: 'sample-tag' })
 export class SampleTag {
-  @Prop() private testPrivate?: string;
   @Prop() protected testProtected?: string;
-
-  private someFn() {
-    return 'test';
-  }
+  @Prop() private testPrivate?: string;
 
   render() {
     return (<div>test</div>);
+  }
+
+  private someFn() {
+    return 'test';
   }
 }

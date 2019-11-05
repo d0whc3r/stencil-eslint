@@ -1,7 +1,7 @@
 import { Rule } from 'eslint';
 import ts from 'typescript';
 import { stencilComponentContext } from '../utils';
-import * as tsutils from 'tsutils';
+import { isThenableType } from 'tsutils';
 
 const rule: Rule.RuleModule = {
   meta: {
@@ -30,7 +30,7 @@ const rule: Rule.RuleModule = {
         const method = parserServices.esTreeNodeToTSNodeMap.get(node);
         const signature = typeChecker.getSignatureFromDeclaration(method);
         const returnType = typeChecker.getReturnTypeOfSignature(signature!);
-        if (!tsutils.isThenableType(typeChecker, method, returnType)) {
+        if (!isThenableType(typeChecker, method, returnType)) {
           const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node) as ts.Node;
           const text = String(originalNode.getFullText());
           context.report({
@@ -38,9 +38,9 @@ const rule: Rule.RuleModule = {
             message: `External @Method() ${node.key.name}() must return a Promise. Consider prefixing the method with async, such as @Method() async ${node.key.name}().`,
             fix(fixer) {
               const result = text.replace('@Method()\n', '@Method()\nasync')
-                  .replace('@Method() ', '@Method() async')
-                  .replace('async public', 'public async')
-                  .replace('async private', 'private async');
+                .replace('@Method() ', '@Method() async')
+                .replace('async public', 'public async')
+                .replace('async private', 'private async');
               return fixer.replaceText(node, result);
             }
           });

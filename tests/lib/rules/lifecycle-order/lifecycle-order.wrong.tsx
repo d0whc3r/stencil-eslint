@@ -8,7 +8,7 @@ export class SampleTag {
     const time = new Date(this.time).toLocaleTimeString();
 
     return (
-        <span>{time}</span>
+      <span>{time}</span>
     );
   }
 

@@ -4,6 +4,10 @@ export class SampleTag {
    * This is the documentation for test property
    */
   @Prop() readonly test?: string;
+  /**
+   * Documentation for event
+   */
+  @Event() myEvent!: CustomEvent;
 
   /**
    * Documentation with params
@@ -14,6 +18,7 @@ export class SampleTag {
   async testMethod(test?: string) {
     return test;
   }
+
   /**
    * Documentation for test Method
    * @returns {Promise<string>}
@@ -22,11 +27,6 @@ export class SampleTag {
   async testMethod2() {
     return 'test';
   }
-
-  /**
-   * Documentation for event
-   */
-  @Event() myEvent!: CustomEvent;
 
   render() {
     return (<div>test</div>);

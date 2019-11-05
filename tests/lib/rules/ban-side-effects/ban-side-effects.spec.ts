@@ -1,14 +1,14 @@
-import rule from '../../../../src/rules/element-type';
+import rule from '../../../../src/rules/ban-side-effects';
 import { ruleTester } from '../rule-tester';
 import * as path from 'path';
 import * as fs from 'fs';
 
 describe('stencil rules', () => {
   const files = {
-    good: path.resolve(__dirname, 'element-type.good.tsx'),
-    wrong: path.resolve(__dirname, 'element-type.wrong.tsx')
+    good: path.resolve(__dirname, 'ban-side-effects.good.tsx'),
+    wrong: path.resolve(__dirname, 'ban-side-effects.wrong.tsx')
   };
-  ruleTester.run('element-type', rule, {
+  ruleTester.run('ban-side-effects', rule, {
     valid: [
       {
         code: fs.readFileSync(files.good, 'utf8'),

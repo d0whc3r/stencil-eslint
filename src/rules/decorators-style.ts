@@ -1,6 +1,6 @@
 import { Rule } from 'eslint';
 import ts from 'typescript';
-import { decoratorName, getDecorator, stencilComponentContext, DECORATORS } from '../utils';
+import { decoratorName, getDecorator, stencilComponentContext, stencilDecorators } from '../utils';
 import * as os from 'os';
 
 type DecoratorsStyleOptionsEnum = 'inline' | 'multiline' | 'ignore';
@@ -111,13 +111,13 @@ const rule: Rule.RuleModule = {
         return;
       }
       const decorators: any[] = getDecorator(node);
-      decorators.filter((dec) => DECORATORS.includes(decoratorName(dec))).forEach(checkStyle);
+      decorators.filter((dec) => stencilDecorators.includes(decoratorName(dec))).forEach(checkStyle);
     }
 
     return {
       ...stencil.rules,
       'ClassProperty': getStyle,
-      'MethodDefinition': getStyle
+      'MethodDefinition[kind=method]': getStyle
     };
   }
 };

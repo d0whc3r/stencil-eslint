@@ -1,6 +1,5 @@
 import { Rule } from 'eslint';
-import ts from 'typescript';
-import { isPrivate, stencilComponentContext, DECORATORS, LIFECYCLE_METHODS } from '../utils';
+import { isPrivate, stencilComponentContext, stencilDecorators, stencilLifecycle } from '../utils';
 
 const rule: Rule.RuleModule = {
   meta: {
@@ -20,14 +19,14 @@ const rule: Rule.RuleModule = {
     const parserServices = context.parserServices;
     return {
       ...stencil.rules,
-      'MethodDefinition': (node: any) => {
+      'MethodDefinition[kind=method]': (node: any) => {
         if (!stencil.isComponent()) {
           return;
         }
         const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node);
         const stencilDecorator = originalNode.decorators && originalNode.decorators.some(
-            (dec: any) => DECORATORS.includes(dec.expression.expression.escapedText));
-        const stencilCycle = LIFECYCLE_METHODS.includes(originalNode.name && originalNode.name.escapedText);
+          (dec: any) => stencilDecorators.includes(dec.expression.expression.escapedText));
+        const stencilCycle = stencilLifecycle.includes(originalNode.name && originalNode.name.escapedText);
         if (!stencilDecorator && !stencilCycle && !isPrivate(originalNode)) {
           const text = String(originalNode.getFullText());
           context.report({

@@ -7,27 +7,6 @@ export class SampleTag {
   @Prop({ mutable: true }) mutableInJsx?: boolean;
   @Prop({ mutable: true }) mutableInJsx2?: boolean;
   @Prop({ mutable: true }) testMutableReturn?: boolean;
-  @Prop({ mutable: true }) mutableInArrayFn?: boolean;
-
-  private internalMethod() {
-    const test = 'hi';
-    if (!this.testNotMutable) {
-      this.testMutable = 'other value';
-    }
-    return this.testMutableReturn = true;
-  }
-
-  private onClick(e: Event) {
-    this.eventHandler((variable) => {
-      this.mutableInArrayFn = variable;
-    });
-    e.preventDefault();
-    if (!this.testNotMutable) {
-      this.testMutable = true;
-    } else if (this.testMutable === undefined) {
-      this.testMutable2 = !this.testMutable2;
-    }
-  }
 
   render() {
     return (
@@ -46,5 +25,22 @@ export class SampleTag {
         })}
       </div>
     );
+  }
+
+  private internalMethod() {
+    const test = 'hi';
+    if (!this.testNotMutable) {
+      this.testMutable = 'other value';
+    }
+    return this.testMutableReturn = true;
+  }
+
+  private onClick(e: Event) {
+    e.preventDefault();
+    if (!this.testNotMutable) {
+      this.testMutable = true;
+    } else if (this.testMutable === undefined) {
+      this.testMutable2 = !this.testMutable2;
+    }
   }
 }

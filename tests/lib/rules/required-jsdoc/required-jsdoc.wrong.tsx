@@ -15,6 +15,7 @@ export class SampleTag {
    * @memberOf SampleTag
    */
   @Prop() readonly test3?: string;
+  @Event() myEvent!: CustomEvent;
 
   @Method()
   async testMethod(test?: string) {
@@ -25,8 +26,6 @@ export class SampleTag {
   async testMethod2() {
     return 'test';
   }
-
-  @Event() myEvent!: CustomEvent;
 
   render() {
     return (<div>test</div>);

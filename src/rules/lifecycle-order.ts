@@ -1,5 +1,5 @@
 import { Rule } from 'eslint';
-import { LIFECYCLE_METHODS, stencilComponentContext } from '../utils';
+import { stencilComponentContext, stencilLifecycle } from '../utils';
 
 type SortTypeEnum = 'alphabetical' | 'call-order';
 const DEFAULTS = 'call-order';
@@ -24,7 +24,7 @@ const rule: Rule.RuleModule = {
 
     const opts = context.options[0] || {};
     const option: SortTypeEnum = opts || DEFAULTS;
-    let order = [...LIFECYCLE_METHODS];
+    let order = [...stencilLifecycle];
     if (option === 'alphabetical') {
       order.sort();
     }
@@ -38,7 +38,7 @@ const rule: Rule.RuleModule = {
       }
       const methodName = node.key.name;
 
-      if (LIFECYCLE_METHODS.includes(methodName)) {
+      if (stencilLifecycle.includes(methodName)) {
         methodList.set(methodName, node);
       }
     }
@@ -56,7 +56,7 @@ const rule: Rule.RuleModule = {
           });
         }
         positionIndex++;
-      })
+      });
     }
 
     return {

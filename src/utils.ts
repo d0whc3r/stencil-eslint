@@ -32,7 +32,7 @@ export function parseDecorator(decorator: any) {
 }
 
 export function decoratorName(dec: any): string {
-  return dec && dec.expression && dec.expression.callee.name;
+  return dec && dec.expression && dec.expression.callee && dec.expression.callee.name;
 }
 
 export function isDecoratorNamed(propName: string) {
@@ -70,9 +70,9 @@ export function getType(node: any) {
   return node.typeAnnotation.typeAnnotation.typeName.name;
 }
 
-export const DECORATORS = ['Component', 'Prop', 'State', 'Watch', 'Element', 'Method', 'Event', 'Listen'];
+export const stencilDecorators = ['Component', 'Prop', 'State', 'Watch', 'Element', 'Method', 'Event', 'Listen'];
 
-export const LIFECYCLE_METHODS = [
+export const stencilLifecycle = [
   'connectedCallback',
   'componentWillLoad',
   'componentDidLoad',
