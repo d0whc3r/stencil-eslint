@@ -62,7 +62,7 @@ const rule: Rule.RuleModule = {
   create(context): Rule.RuleListener {
     const parserServices = context.parserServices;
     const program = parserServices.program;
-    const rawOptions = context.options[0] || ['allow-null-union', 'allow-undefined-union', 'allow-boolean-or-undefined'];
+    const rawOptions = context.options[0] || [OPTION_ALLOW_NULL_UNION, OPTION_ALLOW_UNDEFINED_UNION, OPTION_ALLOW_BOOLEAN_OR_UNDEFINED];
     const options = parseOptions(rawOptions, true);
     const checker = program.getTypeChecker() as ts.TypeChecker;
 
@@ -159,8 +159,8 @@ function parseOptions(ruleArguments: string[], strictNullChecks: boolean): Optio
     allowAnyRhs: has(OPTION_ALLOW_ANY_RHS)
   };
 
-  function has(name: string): boolean {
-    return ruleArguments.indexOf(name) !== -1;
+  function has(name: string) {
+    return ruleArguments.includes(name);
   }
 }
 

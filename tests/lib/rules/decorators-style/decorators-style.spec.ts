@@ -32,7 +32,7 @@ describe('stencil rules', () => {
         code: fs.readFileSync(files.wrong, 'utf8'),
         options,
         filename: files.wrong,
-        errors: 5
+        errors: 4
       }
     ]
   });
