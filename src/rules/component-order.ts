@@ -93,9 +93,10 @@ const rule: Rule.RuleModule = {
     const opts = context.options[0] || {};
     const options: ComponentOrderOptions = { ...opts, ...DEFAULTS };
     let actualOrderIndex = 0;
-    const orderMap = new Map<ComponentOrderEnum, string[]>();
+    // const orderMap = new Map<ComponentOrderEnum, string[]>();
+    const orderSet = new Set<ComponentOrderEnum>();
 
-    function getType(body: any) {
+    function getType(body: any): ComponentOrderEnum {
       let type: ComponentOrderEnum | undefined = undefined;
       const decorators = body.decorators && body.decorators.map(decoratorName);
       const name = body.key.name;
@@ -147,7 +148,7 @@ const rule: Rule.RuleModule = {
           }
           break;
       }
-      return type;
+      return type as ComponentOrderEnum;
     }
 
     function getActual() {
@@ -164,11 +165,10 @@ const rule: Rule.RuleModule = {
     }
 
     function isCorrect(type: ComponentOrderEnum, name: string) {
+      const keys = Array.from(orderSet.keys());
       const isActual = type && getActual().includes(type);
       if (isActual) {
-        const actuals = orderMap.get(type) || [];
-        actuals.push(name);
-        orderMap.set(type, actuals);
+        const actuals = new Set(keys[actualOrderIndex]) || [];
       }
       const isNext = getNext() === type;
       if (isNext) {
@@ -181,11 +181,17 @@ const rule: Rule.RuleModule = {
     }
 
     function parseBody(body: any) {
-      const type = getType(body);
-      const name = body.key.name;
-      const valid = type && isCorrect(type, name);
+      // const type = getType(body);
+      // const name = body.key.name;
+      const valid = type && isCorrect(type);
       const originalNode = parserServices.esTreeNodeToTSNodeMap.get(body);
       console.log('body type', type, originalNode.getText(), valid);
+    }
+
+    function getTypes(body: any) {
+      const type = getType(body);
+      // const name = body.key.name;
+      orderSet.add(type);
     }
 
     return {
@@ -194,6 +200,7 @@ const rule: Rule.RuleModule = {
         if (component) {
           const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node);
           const { body: { body } } = node;
+          body.forEach(getTypes);
           body.forEach(parseBody);
           console.log('node');
         }
