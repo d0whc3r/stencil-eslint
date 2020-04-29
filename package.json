@@ -1,6 +1,6 @@
 {
   "name": "@d0whc3r/eslint-plugin-stencil",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "ESLint rules specific to Stencil JS projects.",
   "keywords": [
     "eslint",
@@ -21,17 +21,17 @@
     "release": "np"
   },
   "dependencies": {
-    "@typescript-eslint/parser": "^2.30.0",
     "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "@typescript-eslint/parser": "^2.30.0",
     "eslint": "^6.8.0",
     "eslint-utils": "^2.0.0",
     "tsutils": "^3.17.1"
   },
   "peerDependencies": {
-    "@typescript-eslint/parser": "^2.30.0",
     "@typescript-eslint/eslint-plugin": "^2.30.0",
-    "eslint-plugin-react": "^7.19.0",
+    "@typescript-eslint/parser": "^2.30.0",
     "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.19.0",
     "typescript": "^3.8.3"
   },
   "devDependencies": {
