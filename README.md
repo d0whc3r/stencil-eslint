@@ -7,7 +7,7 @@ ESLint rules specific to Stencil JS projects.
 Install the following deps in your stencil project:
 
 ```bash
-npm i eslint @typescript-eslint/parser @d0whc3r/eslint-plugin-stencil --save-dev
+npm i eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-react @d0whc3r/eslint-plugin-stencil --save-dev
 ```
 
 ## Usage
@@ -23,6 +23,20 @@ npm i eslint @typescript-eslint/parser @d0whc3r/eslint-plugin-stencil --save-dev
     "plugin:@d0whc3r/stencil/recommended"
   ]
 }
+```
+
+Add a new `lint` script to the `package.json`:
+```json
+{
+  "scripts": {
+    "lint": "eslint src/**/*{.ts,.tsx}"
+  }
+}
+```
+
+Lint all your project:
+```
+npm run lint
 ```
 
 ## Supported Rules

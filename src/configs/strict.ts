@@ -6,6 +6,8 @@ export default {
     'plugin:@stencil/recommended'
   ],
   rules: {
+    '@d0whc3r/stencil/strict-boolean-conditions': 2,
+
     // Resets
     '@typescript-eslint/camelcase': 0,
     '@typescript-eslint/explicit-function-return-type': 0,

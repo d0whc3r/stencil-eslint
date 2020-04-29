@@ -24,7 +24,7 @@ export default {
     '@d0whc3r/stencil/own-props-must-be-private': 2,
     '@d0whc3r/stencil/props-must-be-readonly': 'off',
     '@d0whc3r/stencil/required-jsdoc': 2,
-    '@d0whc3r/stencil/strict-boolean-conditions': 2,
+    '@d0whc3r/stencil/strict-boolean-conditions': 1,
     '@d0whc3r/stencil/strict-mutable': 2,
     'react/jsx-no-bind': [1, { 'ignoreRefs': true }]
   }
